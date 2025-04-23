@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register / Book - MIDWAY WHITE BEACH RESORT</title>
+    <link rel="stylesheet" href="style.css"> <!-- Link to main CSS -->
+    <link rel="stylesheet" href="registration.css"> <!-- Link to registration-specific CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="page-wrapper">
+
+        <header class="site-header">
+            <div class="header-container">
+                <div class="logo">
+                    <a href="index.html">MIDWAY WHITE BEACH RESORT</a>
+                </div>
+                <div class="header-right">
+                    <div class="top-info">
+                        <span><i class="fas fa-phone-alt"></i> <a href="tel:09756296806">0975 629 6806</a></span>
+                        <a href="https://web.facebook.com/MidwayMinkayRCSOfficial" aria-label="Facebook" target="_blank"
+                            rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter" target="_blank" rel="noopener noreferrer"><i
+                                class="fab fa-twitter"></i></a> <!-- Replace # -->
+                        <a href="#" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i
+                                class="fab fa-instagram"></i></a> <!-- Replace # -->
+                    </div>
+                    <nav class="main-navigation">
+                        <ul>
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="registration.html" class="active">Register/Book</a></li>
+                            <li><a href="rates.html">Rates</a></li>
+                            <li><a href="#">Events</a></li> <!-- Placeholder -->
+                            <li><a href="#">Contacts</a></li> <!-- Placeholder -->
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <section class="form-section">
+                <div class="container">
+                    <h1 class="page-title">Create Your Account / Book</h1>
+                    <p>Fill in the details below to register or make a booking inquiry.</p>
+
+                    <!-- NOTE: action="/submit-registration" requires a backend server. -->
+                    <form action="/submit-registration" method="POST">
+                        <div class="form-group">
+                            <label for="fullname">Full Name:</label>
+                            <input type="text" id="fullname" name="fullname" required
+                                placeholder="e.g., Juan Dela Cruz">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address:</label>
+                            <input type="email" id="email" name="email" required
+                                placeholder="e.g., juan.delacruz@email.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number:</label>
+                            <input type="tel" id="phone" name="phone" required placeholder="e.g., 09171234567">
+                        </div>
+                        <!-- Optional Booking Fields -->
+                         <!--
+                         <div class="form-group">
+                            <label for="checkin">Check-in Date:</label>
+                            <input type="date" id="checkin" name="checkin">
+                         </div>
+                         <div class="form-group">
+                            <label for="checkout">Check-out Date:</label>
+                            <input type="date" id="checkout" name="checkout">
+                         </div>
+                         <div class="form-group">
+                            <label for="guests">Number of Guests:</label>
+                            <input type="number" id="guests" name="guests" min="1" placeholder="e.g., 2">
+                         </div>
+                         <div class="form-group">
+                            <label for="message">Message/Requests (Optional):</label>
+                            <textarea id="message" name="message" rows="4"></textarea>
+                         </div>
+                         -->
+                        <div class="form-group terms-group">
+                            <input type="checkbox" id="terms" name="terms" required>
+                            <label for="terms">I agree to the <a href="#" target="_blank">Terms and
+                                    Conditions</a></label> <!-- Replace # -->
+                        </div>
+                        <button type="submit" class="submit-btn">Register / Submit Inquiry</button>
+                    </form>
+                </div>
+            </section>
+        </main>
+
+        <footer class="site-footer">
+            <div class="container">
+                <p>&copy; 2024 MIDWAY WHITE BEACH RESORT. All Rights Reserved.</p>
+                <div class="footer-social">
+                    <a href="https://web.facebook.com/MidwayMinkayRCSOfficial" aria-label="Facebook" target="_blank"
+                        rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter" target="_blank" rel="noopener noreferrer"><i
+                            class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i
+                            class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </footer>
+
+    </div> <!-- /page-wrapper -->
+</body>
+
+</html>

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MIDWAY WHITE BEACH RESORT</title>
+    <!-- Google Font Link -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+    <!-- Link to your CSS file -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Include Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- Removed inline <style> block -->
+
+</head>
+
+<body>
+
+    <div class="page-wrapper">
+
+        <!-- == SMALL VIDEO DISPLAYS == -->
+        <div class="small-video-container video-1">
+            <video id="video1" preload="metadata" muted loop autoplay playsinline>
+                <source src="vid 1.mp4" type="video/mp4">
+                Your browser doesn't support HTML video.
+            </video>
+        </div>
+        <div class="small-video-container video-2">
+            <video id="video2" preload="metadata" muted loop autoplay playsinline>
+                <source src="vid 2.mp4" type="video/mp4">
+                Your browser doesn't support HTML video.
+            </video>
+        </div>
+        <div class="small-video-container video-3">
+            <video id="video3" preload="metadata" muted loop autoplay playsinline>
+                <source src="da borj.mp4" type="video/mp4">
+                Your browser doesn't support HTML video.
+            </video>
+        </div>
+        <!-- == END SMALL VIDEO DISPLAYS == -->
+
+        <header class="site-header">
+            <div class="header-container">
+                <div class="logo">
+                    <a href="index.html">MIDWAY WHITE BEACH RESORT</a>
+                </div>
+                <div class="header-right">
+                    <nav class="main-navigation">
+                        <ul>
+                            <li><a href="index.html" class="active">Home</a></li>
+                            <li><a href="registration.html">Register/Book</a></li>
+                            <li><a href="rates.html">Rates</a></li>
+                            <li><a href="#">Events</a></li>
+                            <li><a href="#">Contacts</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <section class="hero-section">
+                <div class="hero-content">
+                    <h2>WELCOME TO THE</h2>
+                    <h1>MIDWAY WHITE BEACH RESORT</h1>
+                    <p>
+                        MIDWAY WHITE BEACH RESORT is the first beach resort on the shore of Initao Misamis Oriental, one
+                        of the provinces of Mindanao in the Philippines.
+                        For more than a decade, we have dedicated ourselves on creating an isolated haven within a city.
+                        A place of retreat and recreation.
+                    </p>
+                    <a href="registration.html" class="read-more-btn">Book Here</a>
+                </div>
+            </section> <!-- End of hero-section -->
+
+            <section id="services" class="services">
+                <div class="container">
+                    <h2 class="section-title">SERVICES</h2>
+                    <div class="service-items">
+                        <!-- Added specific classes: service-relax, service-explore, service-drink, service-play -->
+                        <div class="service-item service-relax">
+                            <div class="service-icon">
+                                <i class="fas fa-umbrella-beach"></i>
+                            </div>
+                            <p class="service-label">RELAX</p>
+                        </div>
+                        <div class="service-item service-explore">
+                            <div class="service-icon">
+                                <i class="fas fa-life-ring"></i>
+                            </div>
+                            <p class="service-label">EXPLORE</p>
+                        </div>
+                        <div class="service-item service-drink">
+                            <div class="service-icon">
+                                <i class="fas fa-cocktail"></i>
+                            </div>
+                            <p class="service-label">DRINK</p>
+                        </div>
+                        <div class="service-item service-play">
+                            <div class="service-icon">
+                                <i class="fas fa-volleyball"></i>
+                            </div>
+                            <p class="service-label">PLAY</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="site-footer">
+            <div class="container">
+                <p>&copy; 2025 MIDWAY WHITE BEACH RESORT. All Rights Reserved.</p>
+                <div class="footer-social">
+                    <a href="https://web.facebook.com/MidwayMinkayRCSOfficial" aria-label="Facebook" target="_blank"
+                        rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter" target="_blank" rel="noopener noreferrer"><i
+                            class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><i
+                            class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </footer>
+
+    </div> <!-- /page-wrapper -->
+
+    <!-- Fullscreen Video Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const videoContainers = document.querySelectorAll('.small-video-container');
+
+            videoContainers.forEach(container => {
+                const video = container.querySelector('video');
+
+                if (video) {
+                    // Function to enter fullscreen
+                    const enterFullscreen = (elem) => {
+                        if (elem.requestFullscreen) {
+                            elem.requestFullscreen().catch(err => console.error(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`));
+                        } else if (elem.mozRequestFullScreen) { /* Firefox */
+                            elem.mozRequestFullScreen().catch(err => console.error(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`));
+                        } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
+                            elem.webkitRequestFullscreen().catch(err => console.error(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`));
+                        } else if (elem.msRequestFullscreen) { /* IE/Edge */
+                            elem.msRequestFullscreen().catch(err => console.error(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`));
+                        }
+                    };
+
+                    // Function to handle fullscreen change
+                    const handleFullscreenChange = () => {
+                        const isFullscreen = document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement;
+                        if (isFullscreen && document.fullscreenElement === video) {
+                            // Entered fullscreen for THIS video
+                            video.controls = true;
+                            video.muted = false;
+                        } else if (!isFullscreen) {
+                            // Exited fullscreen
+                            video.controls = false;
+                            video.muted = true;
+                            if (video.paused) { // Ensure it keeps playing muted
+                                video.play().catch(err => console.error("Error trying to play video after exiting fullscreen:", err));
+                            }
+                        }
+                    };
+
+                    // Add click listener to the CONTAINER
+                    container.addEventListener('click', () => {
+                        if (document.fullscreenEnabled || document.webkitFullscreenEnabled || document.mozFullScreenEnabled || document.msFullscreenEnabled) {
+                            enterFullscreen(video);
+                        } else {
+                            console.warn("Fullscreen API is not enabled or supported in this browser.");
+                        }
+                    });
+
+                    // Listen for fullscreen changes
+                    document.addEventListener('fullscreenchange', handleFullscreenChange);
+                    document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+                    document.addEventListener('mozfullscreenchange', handleFullscreenChange);
+                    document.addEventListener('MSFullscreenChange', handleFullscreenChange);
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>

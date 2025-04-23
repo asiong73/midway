@@ -1,0 +1,34 @@
+# Operating System files
+.DS_Store
+Thumbs.db
+._*
+.Spotlight-V100
+.Trashes
+
+# Editor/IDE configuration files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Node modules (if you ever use Node.js/npm)
+node_modules/
+
+# Build folders (examples, add others if needed)
+dist/
+build/
+
+# Log files
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment variables file (NEVER commit sensitive data)
+.env
+.env.*
+!.env.example
+
+# Other common ignores
+*.zip
+*.rar

@@ -1,0 +1,620 @@
+/* e:\Users\FALCON\Documents\midway-main\style.css */
+
+/* --- General Styles --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    margin: 0;
+    position: relative; /* Needed for ::before */
+    overflow-x: hidden; /* Prevent horizontal scrollbars */
+    background-color: #a8d8e8; /* Fallback */
+    background: linear-gradient(135deg, #a8d8e8, #87ceeb, #b0e0e6);
+}
+
+/* --- Blurred Background Pseudo-Element --- */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Behind content */
+    background-image: url('background4.png');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    filter: blur(8px);
+    transform: scale(1.05); /* Avoid blurred edges */
+}
+
+/* --- Main Content Container --- */
+.page-wrapper {
+    max-width: 1200px;
+    margin: 20px auto; /* Add top/bottom margin */
+    background-color: #fff;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden; /* Contain children */
+    position: relative; /* Establish stacking context */
+    z-index: 1; /* Above body::before */
+    padding-top: 80px; /* Adjusted in media queries */
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto; /* Center container */
+    padding: 0 20px; /* Horizontal padding */
+}
+
+/* --- Header --- */
+.site-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    padding: 10px 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0));
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    background-image: url('main logo.jpg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: left center;
+    min-height: 50px;
+    padding-left: 60px; /* Space for the background image */
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+}
+.logo a {
+     color: inherit;
+     text-decoration: none;
+}
+
+
+.header-right {
+    display: flex;
+    /* Changed from column to row */
+    flex-direction: row;
+    /* Added to vertically align items */
+    align-items: center;
+}
+
+/* Removed .top-info styles as the element was removed from HTML */
+
+
+.main-navigation ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.main-navigation li {
+    /* Adjusted margin for horizontal layout */
+    margin: 0 15px; /* Add spacing between nav items */
+}
+/* Remove margin-left from the first item if needed */
+.main-navigation li:first-child {
+    margin-left: 0;
+}
+/* Remove margin-right from the last item if needed */
+.main-navigation li:last-child {
+    margin-right: 0;
+}
+
+
+.main-navigation a {
+    color: #eee;
+    font-weight: 500;
+    font-size: 1.1rem;
+    padding-bottom: 5px;
+    border-bottom: 2px solid transparent; /* Default state has transparent border */
+    transition: border-color 0.3s ease, color 0.3s ease;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    white-space: nowrap; /* Prevent nav items from wrapping */
+}
+
+/* Apply underline ONLY on hover */
+.main-navigation a:hover {
+    color: #fff;
+    border-bottom-color: #fff;
+}
+
+/* Style for the active link (change color but keep border transparent) */
+.main-navigation a.active {
+    color: #fff; /* Keep the active color */
+    border-bottom-color: transparent; /* Ensure no underline for active */
+}
+
+
+/* --- Small Video Display Containers --- */
+.small-video-container {
+    cursor: pointer;
+    position: absolute;
+    width: 280px;
+    height: 158px;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+    z-index: 5;
+    background-color: #333;
+}
+
+.small-video-container video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Positioning - Default Desktop */
+.small-video-container.video-1 { top: 100px; left: 20px; }
+.small-video-container.video-2 { top: 275px; left: 20px; }
+.small-video-container.video-3 { top: 450px; left: 20px; }
+
+/* --- Hero Section --- */
+.hero-section {
+    background-image: url('background4.png');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    width: 100%;
+    min-height: 70vh;
+    padding: 60px 20px;
+    display: flex;
+    justify-content: flex-end; /* Default alignment */
+    align-items: center; /* Default alignment */
+    text-align: right; /* Default alignment */
+    color: #ffffff;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    z-index: 1;
+}
+
+.hero-section::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    background: linear-gradient(to top left, transparent 49.8%, #fff 50%),
+                linear-gradient(to top right, transparent 49.8%, #fff 50%);
+    background-size: 50.1% 100%;
+    background-repeat: no-repeat;
+    background-position: left bottom, right bottom;
+    z-index: 3;
+}
+
+.hero-content {
+    max-width: 750px;
+    padding: 20px 5rem 20px 20px;
+    position: relative;
+    z-index: 2;
+    color: #ffffff;
+    margin-left: 0; /* Default */
+    margin-right: 0; /* Default */
+}
+
+.hero-content h2 {
+    font-size: 1.4rem;
+    font-weight: 400;
+    margin-bottom: 5px;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+.hero-content h1 {
+    font-size: 3.2rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    line-height: 1.1;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+}
+
+.hero-content p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 25px; /* Default margin */
+    max-width: 650px;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+}
+
+.read-more-btn {
+    display: inline-block;
+    background-color: transparent;
+    border: 2px solid #ffffff;
+    color: #ffffff;
+    padding: 10px 25px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-shadow: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    cursor: pointer;
+    position: relative; /* Needed for z-index if overlapping */
+    z-index: 2; /* Ensure button is clickable if it overlaps paragraph */
+}
+
+.read-more-btn:hover {
+    background-color: #ffffff;
+    color: #007bff;
+}
+
+/* --- Services Section --- */
+.services {
+    padding: 100px 0 60px 0;
+    text-align: center;
+    background-color: #fff;
+    position: relative; /* Needed for z-index/stacking if using negative margin */
+    z-index: 2; /* Ensure it can overlap hero if needed */
+}
+
+.section-title {
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 15px;
+    text-align: center;
+    margin-top: 1rem; /* Default margin */
+    position: relative; /* Needed for z-index */
+    z-index: 3; /* Ensure title is above potential overlap */
+}
+
+.section-subtitle {
+    font-size: 1.1rem;
+    color: #777;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.service-items {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    padding: 0 15px;
+}
+
+.service-item {
+    flex: 0 1 200px;
+    text-align: center;
+    padding: 20px 15px;
+}
+
+.service-icon {
+    color: #007bff;
+    margin-bottom: 15px;
+}
+
+.service-icon i {
+    font-size: 2.8em;
+}
+
+.service-label {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+    font-size: 1rem;
+}
+
+.service-item::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 3px;
+    background-color: #007bff;
+    margin: 10px auto 0 auto;
+    border-radius: 2px;
+}
+
+/* --- Footer --- */
+.site-footer {
+    background-color: #343a40;
+    color: #adb5bd;
+    padding: 30px 0;
+    margin-top: 30px; /* Default margin */
+    text-align: center;
+    font-size: 0.9rem;
+    position: relative; /* Needed for z-index/stacking if using negative margin */
+    z-index: 1; /* Lower than services */
+}
+
+.site-footer p {
+    margin-bottom: 15px;
+}
+
+.footer-social a {
+    color: #adb5bd;
+    margin: 0 10px;
+    font-size: 1.3rem;
+    transition: color 0.3s ease;
+}
+
+.footer-social a:hover {
+    color: #fff;
+}
+
+/* ================================== */
+/* Responsive Styles */
+/* ================================== */
+
+/* --- Medium Devices (Tablets, smaller desktops - less than 992px) --- */
+@media (max-width: 991.98px) {
+    .header-right {
+        /* Keep default row layout */
+    }
+    .main-navigation li {
+        margin: 0 10px;
+    }
+
+    .small-video-container {
+        width: 200px;
+        height: 113px;
+    }
+     .small-video-container.video-1 { top: 90px; left: 15px; }
+     .small-video-container.video-2 { top: 220px; left: 15px; }
+     .small-video-container.video-3 { top: 350px; left: 15px; }
+
+    .hero-content h1 { font-size: 2.8rem; }
+    .hero-content h2 { font-size: 1.2rem; }
+    .hero-content p { font-size: 1.5rem; } /* This seems large, maybe 1rem? */
+    .hero-content { padding: 15px 4rem 15px 15px; }
+
+    .service-items {
+        justify-content: space-around;
+    }
+    .service-item {
+        flex-basis: 35%;
+    }
+}
+
+/* --- Small Devices (Landscape Phones, Large Portrait Phones - less than 768px) --- */
+@media (max-width: 767.98px) {
+    .page-wrapper {
+        margin: 10px auto;
+        padding-top: 0; /* Remove top padding */
+        border-radius: 15px;
+    }
+
+    .site-header {
+        position: relative; /* Change from absolute */
+        background: #4682b4; /* Add solid background */
+        padding: 15px 0;
+    }
+
+    .header-container {
+        padding: 0 15px;
+        flex-direction: column;
+        align-items: center;
+    }
+    .logo {
+        margin-bottom: 15px;
+        padding-left: 50px;
+        min-height: 40px;
+        font-size: 1.1rem;
+    }
+    /* Ensure header-right is column and centered here */
+    .header-right {
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .main-navigation ul {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+    .main-navigation li {
+        margin: 5px 10px; /* Restore vertical/horizontal margins */
+    }
+    .main-navigation a {
+        font-size: 1rem;
+    }
+
+    .small-video-container {
+        display: none; /* Hide videos on standard small devices */
+    }
+
+    .hero-section {
+        min-height: 60vh;
+        padding: 40px 15px;
+        justify-content: center;
+        text-align: center;
+    }
+    .hero-content {
+        padding: 15px;
+        max-width: 90%;
+    }
+    .hero-content h1 { font-size: 2.5rem; }
+    .hero-content h2 { font-size: 1.1rem; }
+    .hero-content p {
+        font-size: 0.95rem;
+        max-width: 100%;
+        font-weight: normal; /* Reset font-weight */
+        margin-bottom: 25px; /* Reset margin-bottom */
+    }
+    .read-more-btn {
+        font-size: 1rem;
+        padding: 8px 20px;
+        margin-top: 0; /* Reset margin-top */
+    }
+
+    .services {
+        padding: 60px 0 40px 0;
+        margin-top: 0; /* Reset margin-top */
+    }
+    .section-title {
+        font-size: 1.8rem;
+        margin-top: 1rem; /* Reset margin-top */
+    }
+
+    .service-items {
+        flex-direction: column;
+        align-items: center;
+        gap: 25px;
+    }
+    .service-item {
+        flex-basis: auto;
+        width: 70%;
+        max-width: 250px;
+    }
+
+    .site-footer {
+        margin-top: 30px; /* Reset margin-top */
+    }
+
+    img, video {
+        max-width: 100%;
+        height: auto;
+        display: block;
+    }
+}
+
+/* --- Extra Small Devices (Portrait Phones - less than 480px) --- */
+@media (max-width: 479.98px) {
+    .page-wrapper {
+        margin: 10px auto;
+        border-radius: 5px; /* Corrected value */
+    }
+    .header-container { padding: 0 10px; }
+    .logo { font-size: 1rem; padding-left: 40px; min-height: 35px; }
+
+    .main-navigation ul { justify-content: center; }
+    .main-navigation li {
+        margin: 5px 8px; /* Adjust margins */
+    }
+    .main-navigation a { font-size: 1.1rem; }
+
+    /* --- Small Video Adjustments for Extra Small Devices --- */
+    .small-video-container {
+        display: block; /* Override display: none */
+        width: 115px;   /* Make videos smaller */
+        height: 90px;
+        /* left: 10px; */ /* Remove default left positioning */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Slightly reduce shadow */
+    }
+    /* Stack them vertically */
+    .small-video-container.video-1 {
+        top: 185px; /* Adjust top based on header height */
+        left: 7px; /* Keep video 1 on the left */
+    }
+    .small-video-container.video-2 {
+        top: 185px; /* video-1 top + height + gap */
+        left: 50%; /* Position the left edge at the center */
+        transform: translateX(-50%); /* Shift the element left by half its own width */
+    }
+    .small-video-container.video-3 {
+        top: 185px; /* video-2 top + height + gap */
+        left: 260px; /* Keep video 3 on the left */
+    }
+    /* --- End Small Video Adjustments --- */
+
+    .hero-section { min-height: 50vh; }
+    .hero-content {
+        padding: 10px;
+        margin-top: 5rem; /* Push content down */
+    }
+    .hero-content h1 { font-size: 2rem; }
+    .hero-content h2 { font-size: 1.2rem; }
+    .hero-content p {
+        font-size: 1.2rem;
+        font-weight: bold;
+        margin-bottom: 25px; /* Reset to default or adjust as needed */
+    }
+    .read-more-btn {
+        font-size: 1.1rem; /* Slightly larger font */
+        padding: 12px 15px; /* More padding */
+        margin-top: 5px; /* <<< Remove negative margin */
+        width: 60%; /* <<< Make button full width */
+        display: center; /* Ensure it takes full width */
+        box-sizing: border-box; /* Include padding in width calculation */
+    }
+
+    /* --- Adjustments for Shifting Sections Up --- */
+    .services {
+        padding: 60px 0 40px 0; /* Keep existing padding */
+        margin-top: -3rem; /* Shift services section up */
+    }
+    .section-title {
+        font-size: 1.6rem;
+        margin-top: -2rem; /* Shift section title up */
+    }
+    .service-item { width: 80%; }
+        /* --- Service Items Layout for Extra Small Screens --- */
+        .services .service-items {
+            display: flex;             /* Enable Flexbox */
+            flex-wrap: wrap;           /* Allow items to wrap */
+            justify-content: space-around; /* Distribute space */
+            gap: 15px;                 /* Space between items */
+            flex-direction: row;       /* Explicitly set row direction (overrides potential inheritance) */
+            align-items: flex-start;   /* Align items to the start of the cross axis */
+        }
+
+        .services .service-item {
+            flex-basis: calc(50% - 10px); /* Two columns, adjust gap calc if needed */
+            margin-bottom: 15px;       /* Space below items */
+            width: auto;               /* Override width from larger breakpoints */
+            max-width: none;           /* Override max-width from larger breakpoints */
+        }
+
+        /* --- Reorder Service Items using 'order' property --- */
+        .service-drink { order: 1; }
+        .service-play { order: 2; }
+        .service-relax { order: 3; }
+        .service-explore { order: 4; }
+        /* --- End Service Items Layout --- */
+
+
+
+    .service-icon i { font-size: 2.2em; }
+    .service-label { font-size: 0.9rem; }
+
+    .site-footer {
+        padding: 20px 0; /* Keep existing padding */
+        font-size: 0.8rem;
+        margin-top: 5rem; /* <<< UPDATED: Changed from -10rem to -5rem */
+    }
+    .footer-social a { font-size: 1.1rem; margin: 0 8px; }
+    /* --- End Adjustments --- */
+}
