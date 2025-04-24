@@ -1,38 +1,44 @@
 /* e:\Users\FALCON\Documents\midway-main\registration.css */
-/* Styles specific to the registration/booking form */
 
+/* Using variables defined in style.css */
+/* Make sure style.css is loaded before this file */
+
+/* ================================== */
+/* Registration Form Section */
+/* ================================== */
 .form-section {
-    padding: 50px 15px; /* Add horizontal padding for smaller screens */
-    background-color: #f8f9fa; /* Light background */
-    margin-top: 0;
-    margin-bottom: 0;
+    padding: 50px 15px;
+    background-color: var(--light-background);
+    /* margin-top: 0; */ /* Usually handled by spacing of previous section */
+    /* margin-bottom: 0; */ /* Usually handled by spacing of next section or footer */
 }
 
 .form-section .container {
-    max-width: 650px; /* Max width for larger screens */
+    max-width: 650px; /* Limit form width */
     margin: 0 auto;
     padding: 30px 40px;
-    background-color: #ffffff;
+    background-color: var(--white-color);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
+    border-radius: var(--border-radius-base); /* Use base radius */
 }
 
 .form-section .page-title {
     text-align: center;
     margin-bottom: 10px;
-    color: #333;
+    color: var(--text-color);
     font-size: 2rem;
     font-weight: 600;
 }
 
-.form-section p { /* Intro paragraph */
+.form-section p.intro-text { /* Class provides good clarity */
     text-align: center;
     margin-bottom: 35px;
-    color: #666;
-    font-size: 1rem;
-    line-height: 1.6;
+    color: var(--gray-text-color);
+    font-size: var(--base-font-size);
+    line-height: var(--base-line-height);
 }
 
+/* --- Form Elements --- */
 .form-group {
     margin-bottom: 25px;
 }
@@ -41,11 +47,11 @@
     display: block;
     margin-bottom: 8px;
     font-weight: bold;
-    color: #555;
+    color: #555; /* Slightly darker gray - good choice */
     font-size: 0.9rem;
 }
 
-/* Style inputs, selects, textareas */
+/* Input, Select, Textarea base styles */
 .form-group input[type="text"],
 .form-group input[type="email"],
 .form-group input[type="tel"],
@@ -55,69 +61,102 @@
 .form-group textarea {
     width: 100%;
     padding: 12px 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-    font-size: 1rem;
-    color: #333;
-    font-family: inherit;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-small); /* Use small radius */
+    box-sizing: border-box; /* Ensure padding/border included in width */
+    font-size: var(--base-font-size);
+    color: var(--text-color);
+    font-family: inherit; /* Use body font */
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    background-color: var(--white-color); /* Ensure background */
 }
 
+/* Specific styling for select dropdown arrow */
+.form-group select {
+    appearance: none; /* Remove default system appearance */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007bff%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E'); /* Simple SVG arrow */
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 0.65em auto;
+    padding-right: 40px; /* Make space for arrow */
+}
+
+/* Placeholder styles */
 .form-group input::placeholder,
 .form-group textarea::placeholder {
-    color: #aaa;
-    opacity: 1; /* Firefox */
+    color: #aaa; /* Lighter gray for placeholder */
+    opacity: 1; /* Ensure visibility */
 }
 
+/* Focus styles - Using :focus-visible for modern accessibility */
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
-    border-color: #007bff;
-    outline: none;
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);
+    border-color: var(--primary-color);
+    outline: none; /* Remove default outline */
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15); /* Subtle glow */
+}
+/* Apply focus ring primarily for keyboard users */
+.form-group input:focus-visible,
+.form-group select:focus-visible,
+.form-group textarea:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+    box-shadow: none; /* Optionally remove glow if outline is preferred */
 }
 
+
+/* Terms and Conditions Checkbox */
 .form-group.terms-group {
     display: flex;
     align-items: center;
-    margin-top: 10px;
+    margin-top: 10px; /* Reduced top margin */
+    margin-bottom: 20px; /* Ensure space before button */
 }
 
 .form-group input[type="checkbox"] {
     margin-right: 10px;
-    width: auto;
-    flex-shrink: 0;
-    height: 1em;
-    width: 1em;
+    width: auto; /* Override default width */
+    flex-shrink: 0; /* Prevent shrinking */
+    height: 1.1em; /* Slightly larger */
+    width: 1.1em;
+    vertical-align: middle; /* Align better with text */
+    accent-color: var(--primary-color); /* Style checkbox color */
 }
 
 .form-group label[for="terms"] {
-    display: inline;
+    display: inline; /* Keep label inline */
     font-weight: normal;
     font-size: 0.9rem;
-    color: #666;
-    margin-bottom: 0;
+    color: var(--gray-text-color);
+    margin-bottom: 0; /* Reset margin */
+    line-height: 1.4; /* Adjust line height for alignment */
 }
 
 .form-group label[for="terms"] a {
-    color: #007bff;
+    color: var(--primary-color);
     text-decoration: underline;
-    font-weight: normal;
+    font-weight: normal; /* Inherit */
 }
 
-.form-group label[for="terms"] a:hover {
-    color: #0056b3;
+.form-group label[for="terms"] a:hover,
+.form-group label[for="terms"] a:focus {
+    color: var(--primary-hover-color);
+    text-decoration: none; /* Optional: remove underline on hover */
+    outline: none;
 }
 
+/* Submit Button */
 .submit-btn {
     display: block;
     width: 100%;
     padding: 14px 20px;
-    background-color: #007bff;
-    color: white;
+    background-color: var(--primary-color);
+    color: var(--white-color);
     border: none;
-    border-radius: 5px;
+    border-radius: var(--border-radius-small);
     font-size: 1.1rem;
     font-weight: bold;
     cursor: pointer;
@@ -128,18 +167,27 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.submit-btn:hover {
-    background-color: #0056b3;
+.submit-btn:hover,
+.submit-btn:focus {
+    background-color: var(--primary-hover-color);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    outline: none;
+}
+.submit-btn:focus-visible {
+     outline: 2px solid var(--primary-hover-color);
+     outline-offset: 2px;
 }
 
-/* Responsive adjustments */
+
+/* ================================== */
+/* Responsive Adjustments */
+/* ================================== */
 @media (max-width: 767.98px) {
     .form-section {
         padding: 40px 15px; /* Adjust padding */
     }
     .form-section .container {
-        /* max-width: 90%; */ /* Let it be controlled by section padding */
+        /* Let container width be controlled by section padding */
         padding: 25px 30px;
     }
     .form-section .page-title { font-size: 1.8rem; }
@@ -147,14 +195,33 @@
 
 @media (max-width: 479.98px) {
      .form-section {
-        padding: 30px 10px; /* Adjust padding */
+        padding: 30px 10px; /* Further reduce padding */
     }
     .form-section .container {
         padding: 20px 15px; /* Reduce padding inside container */
     }
     .form-section .page-title { font-size: 1.6rem; }
     .form-group label { font-size: 0.85rem; }
-    .form-group input, .form-group select, .form-group textarea { font-size: 0.95rem; padding: 10px 12px; }
-    .submit-btn { font-size: 1rem; padding: 12px 15px; }
+
+    .form-group input[type="text"],
+    .form-group input[type="email"],
+    .form-group input[type="tel"],
+    .form-group input[type="date"],
+    .form-group input[type="number"],
+    .form-group select,
+    .form-group textarea {
+        font-size: 0.95rem;
+        padding: 10px 12px;
+    }
+     /* Adjust select padding for arrow */
+    .form-group select {
+        padding-right: 35px;
+        background-position: right 12px center;
+    }
+
+    .submit-btn {
+        font-size: var(--base-font-size); /* Use base font size */
+        padding: 12px 15px;
+    }
     .form-group label[for="terms"] { font-size: 0.85rem; }
 }

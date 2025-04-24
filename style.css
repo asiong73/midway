@@ -1,6 +1,31 @@
 /* e:\Users\FALCON\Documents\midway-main\style.css */
 
-/* --- General Styles --- */
+/* --- CSS Variables (Custom Properties) --- */
+:root {
+    --primary-color: #007bff;
+    --primary-hover-color: #0056b3;
+    --secondary-color: #4682b4; /* Used for header bg on small screens */
+    --light-background: #f8f9fa;
+    --dark-background: #343a40;
+    --text-color: #333;
+    --light-text-color: #eee;
+    --white-color: #fff;
+    --gray-text-color: #666;
+    --border-color: #ddd;
+    --header-gradient: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0));
+    --body-gradient: linear-gradient(135deg, #a8d8e8, #87ceeb, #b0e0e6);
+    --body-fallback-bg: #a8d8e8;
+    --font-family-base: 'Arial', sans-serif;
+    --base-font-size: 1rem; /* 16px default */
+    --base-line-height: 1.6;
+    --container-max-width: 1100px;
+    --page-wrapper-max-width: 1200px;
+    --border-radius-base: 10px;
+    --border-radius-small: 5px;
+    --box-shadow-base: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* --- General Styles & Reset --- */
 * {
     margin: 0;
     padding: 0;
@@ -8,14 +33,14 @@
 }
 
 body {
-    font-family: 'Arial', sans-serif;
-    line-height: 1.6;
-    color: #333;
+    font-family: var(--font-family-base);
+    line-height: var(--base-line-height);
+    color: var(--text-color);
     margin: 0;
     position: relative; /* Needed for ::before */
     overflow-x: hidden; /* Prevent horizontal scrollbars */
-    background-color: #a8d8e8; /* Fallback */
-    background: linear-gradient(135deg, #a8d8e8, #87ceeb, #b0e0e6);
+    background-color: var(--body-fallback-bg); /* Fallback */
+    background: var(--body-gradient);
 }
 
 /* --- Blurred Background Pseudo-Element --- */
@@ -27,7 +52,7 @@ body::before {
     width: 100%;
     height: 100%;
     z-index: -1; /* Behind content */
-    background-image: url('background4.png');
+    background-image: url('background4.png'); /* Keep image path */
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
@@ -37,15 +62,15 @@ body::before {
 
 /* --- Main Content Container --- */
 .page-wrapper {
-    max-width: 1200px;
+    max-width: var(--page-wrapper-max-width);
     margin: 20px auto; /* Add top/bottom margin */
-    background-color: #fff;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
-    overflow: hidden; /* Contain children */
+    background-color: var(--white-color);
+    box-shadow: var(--box-shadow-base);
+    border-radius: var(--border-radius-base);
+    overflow: hidden; /* Contain children, important for border-radius */
     position: relative; /* Establish stacking context */
     z-index: 1; /* Above body::before */
-    padding-top: 80px; /* Adjusted in media queries */
+    padding-top: 80px; /* Initial padding for absolute header, adjusted in media queries */
 }
 
 a {
@@ -57,25 +82,29 @@ ul {
     list-style: none;
 }
 
+/* --- General Container --- */
 .container {
-    max-width: 1100px;
+    max-width: var(--container-max-width);
     margin: 0 auto; /* Center container */
     padding: 0 20px; /* Horizontal padding */
 }
 
-/* --- Header --- */
+/* ================================== */
+/* Header Styles */
+/* ================================== */
 .site-header {
-    position: absolute;
+    position: absolute; /* Positioned over hero initially */
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 10;
+    z-index: 10; /* Above other content */
     padding: 10px 0;
-    background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0));
+    background: var(--header-gradient); /* Transparent gradient */
+    transition: background-color 0.3s ease; /* Smooth transition for responsive change */
 }
 
 .header-container {
-    max-width: 1200px;
+    max-width: var(--page-wrapper-max-width); /* Match page wrapper width */
     margin: 0 auto;
     padding: 0 20px;
     display: flex;
@@ -86,13 +115,13 @@ ul {
 .logo {
     display: flex;
     align-items: center;
-    background-image: url('main logo.jpg');
+    background-image: url('main logo.jpg'); /* Keep image path */
     background-repeat: no-repeat;
     background-size: contain;
     background-position: left center;
     min-height: 50px;
     padding-left: 60px; /* Space for the background image */
-    color: #fff;
+    color: var(--white-color);
     font-weight: bold;
     font-size: 1.2rem;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
@@ -102,18 +131,13 @@ ul {
      text-decoration: none;
 }
 
-
 .header-right {
     display: flex;
-    /* Changed from column to row */
     flex-direction: row;
-    /* Added to vertically align items */
     align-items: center;
 }
 
-/* Removed .top-info styles as the element was removed from HTML */
-
-
+/* --- Main Navigation --- */
 .main-navigation ul {
     display: flex;
     list-style: none;
@@ -122,54 +146,50 @@ ul {
 }
 
 .main-navigation li {
-    /* Adjusted margin for horizontal layout */
-    margin: 0 15px; /* Add spacing between nav items */
+    margin: 0 15px; /* Spacing between nav items */
 }
-/* Remove margin-left from the first item if needed */
-.main-navigation li:first-child {
-    margin-left: 0;
-}
-/* Remove margin-right from the last item if needed */
-.main-navigation li:last-child {
-    margin-right: 0;
-}
-
+.main-navigation li:first-child { margin-left: 0; }
+.main-navigation li:last-child { margin-right: 0; }
 
 .main-navigation a {
-    color: #eee;
+    color: var(--light-text-color);
     font-weight: 500;
     font-size: 1.1rem;
     padding-bottom: 5px;
-    border-bottom: 2px solid transparent; /* Default state has transparent border */
+    border-bottom: 2px solid transparent;
     transition: border-color 0.3s ease, color 0.3s ease;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
     white-space: nowrap; /* Prevent nav items from wrapping */
 }
 
-/* Apply underline ONLY on hover */
-.main-navigation a:hover {
-    color: #fff;
-    border-bottom-color: #fff;
+.main-navigation a:hover,
+.main-navigation a:focus { /* Added focus state for accessibility */
+    color: var(--white-color);
+    border-bottom-color: var(--white-color);
+    outline: none; /* Basic outline removal, consider :focus-visible */
 }
 
-/* Style for the active link (change color but keep border transparent) */
 .main-navigation a.active {
-    color: #fff; /* Keep the active color */
-    border-bottom-color: transparent; /* Ensure no underline for active */
+    color: var(--white-color);
+    border-bottom-color: transparent; /* No underline for active */
+    font-weight: bold; /* Make active link slightly bolder */
 }
 
-
-/* --- Small Video Display Containers --- */
+/* ================================== */
+/* Small Video Display */
+/* Note: Absolute positioning with fixed pixel values can be brittle. */
+/* Consider relative units or different layout techniques if possible. */
+/* ================================== */
 .small-video-container {
     cursor: pointer;
     position: absolute;
-    width: 280px;
+    width: 280px; /* Consider using relative units (vw, %) if appropriate */
     height: 158px;
     overflow: hidden;
     border-radius: 8px;
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
-    z-index: 5;
-    background-color: #333;
+    z-index: 5; /* Below header, above hero content potentially */
+    background-color: var(--text-color); /* Dark background */
 }
 
 .small-video-container video {
@@ -180,59 +200,65 @@ ul {
 }
 
 /* Positioning - Default Desktop */
+/* These values might need adjustment if surrounding content changes */
 .small-video-container.video-1 { top: 100px; left: 20px; }
 .small-video-container.video-2 { top: 275px; left: 20px; }
 .small-video-container.video-3 { top: 450px; left: 20px; }
 
-/* --- Hero Section --- */
+/* ================================== */
+/* Hero Section */
+/* ================================== */
 .hero-section {
-    background-image: url('background4.png');
+    background-image: url('background4.png'); /* Keep image path */
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
     width: 100%;
-    min-height: 70vh;
-    padding: 60px 20px;
+    min-height: 70vh; /* Relative height */
+    padding: 60px 20px; /* Base padding */
     display: flex;
-    justify-content: flex-end; /* Default alignment */
-    align-items: center; /* Default alignment */
-    text-align: right; /* Default alignment */
-    color: #ffffff;
-    position: relative;
-    overflow: hidden;
+    justify-content: flex-end; /* Default: Right alignment */
+    align-items: center;
+    text-align: right; /* Default: Right alignment */
+    color: var(--white-color);
+    position: relative; /* For pseudo-elements */
+    overflow: hidden; /* Contain pseudo-elements */
 }
 
+/* Dark overlay */
 .hero-section::before {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.3); /* Overlay darkness */
     z-index: 1;
 }
 
+/* Angled bottom shape */
 .hero-section::after {
     content: '';
     position: absolute;
-    bottom: -1px;
+    bottom: -1px; /* Prevent thin line gap */
     left: 0;
     width: 100%;
-    height: 60px;
-    background: linear-gradient(to top left, transparent 49.8%, #fff 50%),
-                linear-gradient(to top right, transparent 49.8%, #fff 50%);
-    background-size: 50.1% 100%;
+    height: 60px; /* Height of the angled shape */
+    /* Clever technique, ensure cross-browser compatibility */
+    background: linear-gradient(to top left, transparent 49.8%, var(--white-color) 50%),
+                linear-gradient(to top right, transparent 49.8%, var(--white-color) 50%);
+    background-size: 50.1% 100%; /* Slight overlap to prevent gap */
     background-repeat: no-repeat;
     background-position: left bottom, right bottom;
-    z-index: 3;
+    z-index: 3; /* Above overlay, below content potentially */
 }
 
 .hero-content {
     max-width: 750px;
-    padding: 20px 5rem 20px 20px;
+    padding: 20px 5rem 20px 20px; /* Default padding (right-heavy) */
     position: relative;
-    z-index: 2;
-    color: #ffffff;
-    margin-left: 0; /* Default */
-    margin-right: 0; /* Default */
+    z-index: 2; /* Above overlay and shape */
+    color: var(--white-color);
+    margin-left: auto; /* Push content to the right */
+    margin-right: 0;
 }
 
 .hero-content h2 {
@@ -254,114 +280,132 @@ ul {
 .hero-content p {
     font-size: 1.1rem;
     line-height: 1.7;
-    margin-bottom: 25px; /* Default margin */
-    max-width: 650px;
+    margin-bottom: 25px;
+    max-width: 650px; /* Limit paragraph width */
     text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
 }
 
 .read-more-btn {
     display: inline-block;
     background-color: transparent;
-    border: 2px solid #ffffff;
-    color: #ffffff;
+    border: 2px solid var(--white-color);
+    color: var(--white-color);
     padding: 10px 25px;
-    border-radius: 25px;
+    border-radius: 25px; /* Pill shape */
     text-decoration: none;
     font-size: 1.1rem;
     font-weight: bold;
     text-shadow: none;
     transition: background-color 0.3s ease, color 0.3s ease;
     cursor: pointer;
-    position: relative; /* Needed for z-index if overlapping */
-    z-index: 2; /* Ensure button is clickable if it overlaps paragraph */
+    position: relative;
+    z-index: 2; /* Ensure button is clickable */
 }
 
-.read-more-btn:hover {
-    background-color: #ffffff;
-    color: #007bff;
+.read-more-btn:hover,
+.read-more-btn:focus { /* Added focus state */
+    background-color: var(--white-color);
+    color: var(--primary-color);
+    outline: none;
 }
 
-/* --- Services Section --- */
+/* ================================== */
+/* Services Section */
+/* ================================== */
 .services {
-    padding: 100px 0 60px 0;
+    padding: 100px 0 60px 0; /* Generous padding */
     text-align: center;
-    background-color: #fff;
-    position: relative; /* Needed for z-index/stacking if using negative margin */
-    z-index: 2; /* Ensure it can overlap hero if needed */
+    background-color: var(--white-color);
+    position: relative;
+    z-index: 2; /* Ensure it sits above hero shape */
 }
 
 .section-title {
     font-size: 2.2rem;
     font-weight: 600;
-    color: #333;
+    color: var(--text-color);
     margin-bottom: 15px;
     text-align: center;
-    margin-top: 1rem; /* Default margin */
-    position: relative; /* Needed for z-index */
+    /* margin-top: 1rem; */ /* Removed default, handled by section padding */
+    position: relative;
     z-index: 3; /* Ensure title is above potential overlap */
 }
 
 .section-subtitle {
     font-size: 1.1rem;
-    color: #777;
+    color: var(--gray-text-color);
     margin-bottom: 40px;
     text-align: center;
+    max-width: 700px; /* Limit width */
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .service-items {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 30px;
-    padding: 0 15px;
+    gap: 30px; /* Space between items */
+    padding: 0 15px; /* Horizontal padding for items container */
 }
 
 .service-item {
-    flex: 0 1 200px;
+    flex: 0 1 200px; /* Flex basis for default layout (don't grow, shrink allowed, base width) */
     text-align: center;
     padding: 20px 15px;
 }
 
 .service-icon {
-    color: #007bff;
+    color: var(--primary-color);
     margin-bottom: 15px;
 }
 
 .service-icon i {
-    font-size: 2.8em;
+    font-size: 2.8em; /* Relative to parent font size */
+    line-height: 1; /* Prevent extra space */
 }
 
 .service-label {
     font-weight: bold;
-    color: #333;
+    color: var(--text-color);
     margin-bottom: 5px;
-    font-size: 1rem;
+    font-size: var(--base-font-size);
 }
 
+/* Underline accent */
 .service-item::after {
     content: '';
     display: block;
     width: 40px;
     height: 3px;
-    background-color: #007bff;
+    background-color: var(--primary-color);
     margin: 10px auto 0 auto;
     border-radius: 2px;
 }
 
-/* --- Footer --- */
+/* ================================== */
+/* Footer */
+/* ================================== */
 .site-footer {
-    background-color: #343a40;
-    color: #adb5bd;
+    background-color: var(--dark-background);
+    color: #adb5bd; /* Specific gray for footer text */
     padding: 30px 0;
-    margin-top: 30px; /* Default margin */
+    /* margin-top: 30px; */ /* Removed default, handled by spacing of last section */
     text-align: center;
     font-size: 0.9rem;
-    position: relative; /* Needed for z-index/stacking if using negative margin */
+    position: relative;
     z-index: 1; /* Lower than services */
+}
+
+.site-footer .container {
+    /* Container already handles padding */
 }
 
 .site-footer p {
     margin-bottom: 15px;
+}
+.site-footer p:last-child {
+    margin-bottom: 0; /* Remove margin from last paragraph */
 }
 
 .footer-social a {
@@ -369,10 +413,13 @@ ul {
     margin: 0 10px;
     font-size: 1.3rem;
     transition: color 0.3s ease;
+    display: inline-block; /* Ensure proper spacing */
 }
 
-.footer-social a:hover {
-    color: #fff;
+.footer-social a:hover,
+.footer-social a:focus { /* Added focus state */
+    color: var(--white-color);
+    outline: none;
 }
 
 /* ================================== */
@@ -381,13 +428,11 @@ ul {
 
 /* --- Medium Devices (Tablets, smaller desktops - less than 992px) --- */
 @media (max-width: 991.98px) {
-    .header-right {
-        /* Keep default row layout */
-    }
     .main-navigation li {
-        margin: 0 10px;
+        margin: 0 10px; /* Slightly reduce nav spacing */
     }
 
+    /* Adjust small video size and position */
     .small-video-container {
         width: 200px;
         height: 113px;
@@ -396,36 +441,43 @@ ul {
      .small-video-container.video-2 { top: 220px; left: 15px; }
      .small-video-container.video-3 { top: 350px; left: 15px; }
 
+    .hero-content {
+        padding: 15px 4rem 15px 15px; /* Adjust padding */
+        max-width: 650px; /* Adjust max width */
+    }
     .hero-content h1 { font-size: 2.8rem; }
     .hero-content h2 { font-size: 1.2rem; }
-    .hero-content p { font-size: 1.5rem; } /* This seems large, maybe 1rem? */
-    .hero-content { padding: 15px 4rem 15px 15px; }
+    .hero-content p { font-size: 1rem; } /* Consistent font size */
 
     .service-items {
-        justify-content: space-around;
+        justify-content: space-around; /* Spread items more */
+        gap: 20px; /* Reduce gap slightly */
     }
     .service-item {
-        flex-basis: 35%;
+        flex-basis: calc(33.333% - 20px); /* Aim for 3 columns */
+        max-width: 220px;
     }
 }
 
-/* --- Small Devices (Landscape Phones, Large Portrait Phones - less than 768px) --- */
-@media (max-width: 767.98px) {
+/* --- Small Devices (Landscape Phones, Large Portrait Phones - less than 813px) --- */
+/* Using 813px to potentially capture devices like iPhone X landscape */
+@media (max-width: 812.98px) {
     .page-wrapper {
         margin: 10px auto;
-        padding-top: 0; /* Remove top padding */
-        border-radius: 15px;
+        padding-top: 0; /* Remove top padding as header becomes relative */
+        border-radius: 15px; /* Larger radius */
     }
 
     .site-header {
-        position: relative; /* Change from absolute */
-        background: #4682b4; /* Add solid background */
+        position: relative; /* Header inside flow */
+        background: var(--secondary-color); /* Solid background */
         padding: 15px 0;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* Add subtle shadow */
     }
 
     .header-container {
         padding: 0 15px;
-        flex-direction: column;
+        flex-direction: column; /* Stack logo and nav */
         align-items: center;
     }
     .logo {
@@ -433,8 +485,9 @@ ul {
         padding-left: 50px;
         min-height: 40px;
         font-size: 1.1rem;
+        text-shadow: none; /* Remove shadow on solid background */
+        color: var(--white-color); /* Ensure contrast */
     }
-    /* Ensure header-right is column and centered here */
     .header-right {
         flex-direction: column;
         align-items: center;
@@ -443,71 +496,107 @@ ul {
 
     .main-navigation ul {
         justify-content: center;
-        flex-wrap: wrap;
+        flex-wrap: wrap; /* Allow nav items to wrap */
+        gap: 5px 15px; /* Row and column gap */
     }
     .main-navigation li {
-        margin: 5px 10px; /* Restore vertical/horizontal margins */
+        margin: 0; /* Remove individual margins, use gap */
     }
     .main-navigation a {
-        font-size: 1rem;
+        font-size: var(--base-font-size); /* Use base font size */
+        text-shadow: none; /* Remove shadow */
+        color: var(--light-text-color); /* Ensure contrast */
     }
+     .main-navigation a:hover,
+     .main-navigation a:focus,
+     .main-navigation a.active {
+        color: var(--white-color);
+        border-bottom-color: var(--white-color);
+     }
+     .main-navigation a.active {
+         border-bottom-color: transparent; /* Keep active style */
+     }
 
+
+    /* --- Small Video Adjustments --- */
+    /* Re-evaluating positioning for this breakpoint */
     .small-video-container {
-        display: none; /* Hide videos on standard small devices */
+        /* Consider hiding or drastically changing layout */
+        /* Current positioning might overlap awkwardly */
+        /* Example: Hiding them */
+        /* display: none; */
+
+        /* Or adjusting more carefully */
+        width: 180px; /* Smaller */
+        height: 101px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     }
+    /* Adjust top based on new relative header height */
+    .small-video-container.video-1 { top: 110px; left: 90px; }
+    .small-video-container.video-2 { top: 110px; left: 320px; }
+    .small-video-container.video-3 { top: 110px; left: 600px; }
+    /* --- End Small Video Adjustments --- */
+
 
     .hero-section {
-        min-height: 60vh;
-        padding: 40px 15px;
-        justify-content: center;
+        min-height: auto; /* Let content define height */
+        padding: 80px 30px;
+        justify-content: center; /* Center content block */
+        text-align: center; /* Center text inside block */
+        display: block; /* Stack content vertically */
+    }
+    .hero-section::after {
+        height: 0px; /* Reduce angled shape height */
+    }
+
+    .hero-content {
+        padding: 15px; /* Reset padding */
+        max-width: 90%; /* Allow more width */
+        margin: 0 auto; /* Center block */
         text-align: center;
     }
-    .hero-content {
-        padding: 15px;
-        max-width: 90%;
-    }
     .hero-content h1 { font-size: 2.5rem; }
-    .hero-content h2 { font-size: 1.1rem; }
+    .hero-content h2 { font-size: 1.5rem; } /* Reduced size */
     .hero-content p {
-        font-size: 0.95rem;
+        font-size: 1.5rem; /* Standardized size */
         max-width: 100%;
-        font-weight: normal; /* Reset font-weight */
-        margin-bottom: 25px; /* Reset margin-bottom */
+        font-weight: normal;
+        margin-bottom: 20px;
     }
     .read-more-btn {
-        font-size: 1rem;
+        font-size: var(--base-font-size);
         padding: 8px 20px;
-        margin-top: 0; /* Reset margin-top */
+        margin-top: 10px; /* Add some space */
     }
 
     .services {
         padding: 60px 0 40px 0;
-        margin-top: 0; /* Reset margin-top */
+        /* margin-top: 0; */ /* Reset margin if previously set */
     }
     .section-title {
-        font-size: 1.8rem;
-        margin-top: 1rem; /* Reset margin-top */
+        font-size: 2rem; /* Adjust title size */
+        /* margin-top: 1rem; */ /* Reset margin */
+    }
+    .section-subtitle {
+        font-size: 1rem;
     }
 
     .service-items {
-        flex-direction: column;
-        align-items: center;
-        gap: 25px;
+        flex-direction: row; /* Keep as row initially */
+        justify-content: space-around;
+        gap: 20px;
     }
     .service-item {
-        flex-basis: auto;
-        width: 70%;
+        flex-basis: calc(50% - 15px); /* Two columns */
+        width: auto;
         max-width: 250px;
     }
 
-    .site-footer {
-        margin-top: 30px; /* Reset margin-top */
-    }
-
+    /* Ensure images/videos are responsive */
     img, video {
         max-width: 100%;
         height: auto;
-        display: block;
+        display: block; /* Prevents bottom space */
     }
 }
 
@@ -515,105 +604,105 @@ ul {
 @media (max-width: 479.98px) {
     .page-wrapper {
         margin: 10px auto;
-        border-radius: 5px; /* Corrected value */
+        border-radius: var(--border-radius-small); /* Use variable */
+    }
+    .container {
+        padding: 0 15px; /* Adjust container padding */
     }
     .header-container { padding: 0 10px; }
-    .logo { font-size: 1rem; padding-left: 40px; min-height: 35px; }
+    .logo { font-size: 1rem; padding-left: 40px; min-height: 35px; margin-bottom: 10px; }
 
-    .main-navigation ul { justify-content: center; }
-    .main-navigation li {
-        margin: 5px 8px; /* Adjust margins */
-    }
-    .main-navigation a { font-size: 1.1rem; }
+    .main-navigation ul { justify-content: center; gap: 5px 10px; }
+    .main-navigation a { font-size: 1rem; } /* Consistent font size */
 
     /* --- Small Video Adjustments for Extra Small Devices --- */
-    .small-video-container {
-        display: block; /* Override display: none */
-        width: 115px;   /* Make videos smaller */
-        height: 90px;
-        /* left: 10px; */ /* Remove default left positioning */
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Slightly reduce shadow */
+    /* Hiding videos on very small screens might be the best option */
+    /* .small-video-container {
+        display: none;
+    } */
+    /* If keeping them, positioning becomes very tricky */
+     .small-video-container {
+        width: 150px;
+        height: 84px;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
     }
-    /* Stack them vertically */
-    .small-video-container.video-1 {
-        top: 185px; /* Adjust top based on header height */
-        left: 7px; /* Keep video 1 on the left */
-    }
-    .small-video-container.video-2 {
-        top: 185px; /* video-1 top + height + gap */
-        left: 50%; /* Position the left edge at the center */
-        transform: translateX(-50%); /* Shift the element left by half its own width */
-    }
-    .small-video-container.video-3 {
-        top: 185px; /* video-2 top + height + gap */
-        left: 260px; /* Keep video 3 on the left */
-    }
+    /* Example positioning (highly dependent on header/content flow) */
+    .small-video-container.video-1 { top: 120px; left: 5px; }
+    .small-video-container.video-2 { top: 120px; left: 165px; }
+    .small-video-container.video-3 { top: 120px; left: 325px; }
     /* --- End Small Video Adjustments --- */
 
-    .hero-section { min-height: 50vh; }
+    .hero-section {
+        padding: 97px 4.95px;
+        min-height: auto;
+     }
+     .hero-section::after {
+        height: 0px; /* Further reduce angled shape */
+    }
     .hero-content {
         padding: 10px;
-        margin-top: 5rem; /* Push content down */
+        margin-top: 30; /* Remove negative margin if videos are hidden/repositioned */
     }
-    .hero-content h1 { font-size: 2rem; }
-    .hero-content h2 { font-size: 1.2rem; }
+    .hero-content h1 { font-size: 1.9rem; }
+    .hero-content h2 { font-size: 1.9rem; }
     .hero-content p {
-        font-size: 1.2rem;
-        font-weight: bold;
-        margin-bottom: 25px; /* Reset to default or adjust as needed */
+        font-size: 1.25rem;
+        margin-bottom: 50px;
     }
     .read-more-btn {
-        font-size: 1.1rem; /* Slightly larger font */
-        padding: 12px 15px; /* More padding */
-        margin-top: 5px; /* <<< Remove negative margin */
-        width: 60%; /* <<< Make button full width */
-        display: center; /* Ensure it takes full width */
-        box-sizing: border-box; /* Include padding in width calculation */
+        font-size: 0.95rem;
+        padding: 6px 18px;
+        margin-top: 5px;
+        /* width: 10rem; */ /* Avoid fixed width if possible */
+        display: inline-block; /* Back to inline-block */
+        /* margin-left: auto; */ /* Remove centering for inline-block */
+        /* margin-right: auto; */
     }
 
-    /* --- Adjustments for Shifting Sections Up --- */
+    /* --- Adjustments for Section Spacing --- */
+    /* Avoid negative margins if possible by adjusting padding */
     .services {
-        padding: 60px 0 40px 0; /* Keep existing padding */
-        margin-top: -3rem; /* Shift services section up */
+        padding: 40px 0 30px 0; /* Adjust padding instead of negative margin */
+        /* margin-top: -2.5rem; */ /* Avoid if possible */
     }
     .section-title {
         font-size: 1.6rem;
-        margin-top: -2rem; /* Shift section title up */
+        /* margin-top: -1rem; */ /* Avoid if possible */
     }
-    .service-item { width: 80%; }
-        /* --- Service Items Layout for Extra Small Screens --- */
-        .services .service-items {
-            display: flex;             /* Enable Flexbox */
-            flex-wrap: wrap;           /* Allow items to wrap */
-            justify-content: space-around; /* Distribute space */
-            gap: 15px;                 /* Space between items */
-            flex-direction: row;       /* Explicitly set row direction (overrides potential inheritance) */
-            align-items: flex-start;   /* Align items to the start of the cross axis */
-        }
+    .section-subtitle {
+        font-size: 0.95rem;
+        margin-bottom: 30px;
+    }
 
-        .services .service-item {
-            flex-basis: calc(50% - 10px); /* Two columns, adjust gap calc if needed */
-            margin-bottom: 15px;       /* Space below items */
-            width: auto;               /* Override width from larger breakpoints */
-            max-width: none;           /* Override max-width from larger breakpoints */
-        }
+    /* --- Service Items Layout for Extra Small Screens --- */
+    .services .service-items {
+        /* Already set to row, two columns */
+        gap: 15px;
+        padding: 0 10px; /* Adjust padding */
+    }
 
-        /* --- Reorder Service Items using 'order' property --- */
-        .service-drink { order: 1; }
-        .service-play { order: 2; }
-        .service-relax { order: 3; }
-        .service-explore { order: 4; }
-        /* --- End Service Items Layout --- */
+    .services .service-item {
+        flex-basis: calc(50% - 10px); /* Maintain two columns */
+        padding: 15px 10px; /* Adjust padding */
+        /* width: auto; */ /* Already set */
+        /* max-width: none; */ /* Already set */
+    }
 
-
+    /* --- Reorder Service Items using 'order' property --- */
+    /* This is fine, ensure HTML source order is logical */
+    .service-drink { order: 1; }
+    .service-play { order: 2; }
+    .service-relax { order: 3; }
+    .service-explore { order: 4; }
+    /* --- End Service Items Layout --- */
 
     .service-icon i { font-size: 2.2em; }
     .service-label { font-size: 0.9rem; }
 
     .site-footer {
-        padding: 20px 0; /* Keep existing padding */
-        font-size: 0.8rem;
-        margin-top: 5rem; /* <<< UPDATED: Changed from -10rem to -5rem */
+        padding: 20px 0; /* Adjust padding */
+        font-size: 0.85rem; /* Slightly smaller font */
+        /* margin-top: 0rem; */ /* Reset margin */
     }
     .footer-social a { font-size: 1.1rem; margin: 0 8px; }
     /* --- End Adjustments --- */

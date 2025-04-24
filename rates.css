@@ -1,130 +1,191 @@
 /* e:\Users\FALCON\Documents\midway-main\rates.css */
-/* Styles specific to the rates page */
 
+/* Using variables defined in style.css */
+/* Make sure style.css is loaded before this file */
+
+/* ================================== */
+/* Rates Section */
+/* ================================== */
 .rates-section {
-    padding: 40px 0;
-    background-color: #fff; /* Ensure white background */
+    padding: 60px 0; /* Adjusted padding */
+    background-color: var(--white-color); /* Use variable */
+}
+
+.rates-section .container {
+    /* Container handles max-width and base horizontal padding */
 }
 
 .rates-section .page-title {
-    /* text-align: center; */ /* Inherited */
+    text-align: center; /* Explicitly center */
     margin-bottom: 15px;
     font-size: 2.2rem;
+    color: var(--text-color);
 }
 
 .rates-intro {
     text-align: center;
     margin-bottom: 40px;
-    color: #666;
+    color: var(--gray-text-color);
     font-size: 1.1rem;
+    line-height: var(--base-line-height);
     max-width: 800px;
     margin-left: auto;
     margin-right: auto;
-    padding: 0 15px;
+    padding: 0 15px; /* Add horizontal padding if needed beyond container */
 }
 
+/* --- Rate Categories --- */
 .rates-category {
     margin-bottom: 50px;
     padding: 30px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
+    background-color: #f9f9f9; /* Slightly off-white - good contrast */
+    border-radius: var(--border-radius-base); /* Use base radius */
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    /* Removed horizontal margins - let container handle spacing */
+    /* margin-left: 15px; */
+    /* margin-right: 15px; */
 }
 
 .category-title {
     font-size: 1.8rem;
-    color: #0056b3;
+    color: var(--primary-hover-color); /* Use a defined color */
     margin-bottom: 20px;
     padding-bottom: 10px;
-    border-bottom: 2px solid #eee;
+    border-bottom: 2px solid #eee; /* Lighter border */
 }
 
 .rates-category p {
     margin-bottom: 20px;
-    line-height: 1.6;
-    color: #555;
+    line-height: var(--base-line-height);
+    color: #555; /* Consistent paragraph color */
+}
+.rates-category p:last-of-type {
+    margin-bottom: 0; /* Remove margin from last paragraph */
 }
 
 .rates-category p strong {
-    color: #333;
+    color: var(--text-color); /* Ensure strong text stands out */
+    font-weight: 600; /* Slightly bolder */
 }
+
+/* ================================== */
+/* Rates Table */
+/* ================================== */
 
 /* Wrapper for responsive tables */
 .table-responsive-wrapper {
-    overflow-x: auto;
+    overflow-x: auto; /* Enable horizontal scroll */
     margin-bottom: 20px;
-    -webkit-overflow-scrolling: touch;
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    border: 1px solid var(--border-color); /* Add border to wrapper */
+    border-radius: var(--border-radius-small);
+    background-color: var(--white-color); /* Ensure background for table */
 }
 
-/* Styling for the rates tables */
+/* Base table styling */
 .rates-table {
     width: 100%;
-    min-width: 600px; /* Adjust as needed */
+    min-width: 600px; /* Minimum width before scroll appears */
     border-collapse: collapse;
     font-size: 0.95rem;
 }
 
 .rates-table th,
 .rates-table td {
-    border: 1px solid #ddd;
+    border-bottom: 1px solid var(--border-color); /* Use bottom border only */
     padding: 12px 15px;
     text-align: left;
     vertical-align: middle;
 }
-
-.rates-table thead th {
-    background-color: #e9ecef;
-    font-weight: bold;
-    color: #495057;
-    white-space: nowrap;
-    position: sticky;
-    top: 0;
-    z-index: 1;
+.rates-table td {
+     color: var(--text-color);
 }
 
+/* Remove border from last row */
+.rates-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Table Header */
+.rates-table thead th {
+    background-color: #e9ecef; /* Light gray header */
+    font-weight: bold;
+    color: #495057; /* Darker gray text */
+    white-space: nowrap; /* Prevent header text wrapping */
+    position: sticky; /* Keep header visible on scroll */
+    top: 0; /* Stick to top */
+    z-index: 1; /* Ensure header is above body rows */
+    border-top: none; /* Remove top border if wrapper has one */
+    border-bottom-width: 2px; /* Make header bottom border slightly thicker */
+    /* border-left: none; */ /* Handled by wrapper */
+    /* border-right: none; */ /* Handled by wrapper */
+}
+/* .rates-table thead th:first-child { border-left: none; } */
+/* .rates-table thead th:last-child { border-right: none; } */
+
+
+/* Table Body */
 .rates-table tbody tr:nth-child(even) {
-    background-color: #f8f9fa;
+    background-color: var(--light-background); /* Zebra striping */
 }
 
 .rates-table tbody tr:hover {
-    background-color: #eef4fc;
+    background-color: #eef4fc; /* Subtle hover effect */
 }
 
-/* Right-align price columns */
+/* Price column alignment */
 .rates-table th.price-col,
 .rates-table td.price-col {
      text-align: right;
-     white-space: nowrap;
+     white-space: nowrap; /* Prevent prices from wrapping */
+     font-feature-settings: "tnum"; /* Align numbers */
+     font-variant-numeric: tabular-nums;
 }
 
-
+/* ================================== */
+/* Contact CTA */
+/* ================================== */
 .rates-contact {
     text-align: center;
     margin-top: 40px;
     font-size: 1.1rem;
     padding: 25px;
-    background-color: #e7f3ff;
-    border-radius: 5px;
-    border: 1px solid #cce5ff;
-    margin-left: 15px;
-    margin-right: 15px;
+    background-color: #e7f3ff; /* Light blue background */
+    border-radius: var(--border-radius-small);
+    border: 1px solid #cce5ff; /* Matching border */
+    /* Removed horizontal margins - let container handle spacing */
+    /* margin-left: 15px; */
+    /* margin-right: 15px; */
+}
+
+.rates-contact p {
+    margin: 0; /* Remove default margin if it's just one line */
+    line-height: var(--base-line-height);
 }
 
 .rates-contact a {
-    color: #0056b3;
+    color: var(--primary-hover-color);
     font-weight: bold;
     text-decoration: underline;
 }
 
-.rates-contact a:hover {
-    color: #003d80;
+.rates-contact a:hover,
+.rates-contact a:focus {
+    color: #003d80; /* Darker blue on hover */
     text-decoration: none;
+    outline: none;
+}
+.rates-contact a:focus-visible {
+    outline: 2px solid #003d80;
+    outline-offset: 2px;
 }
 
-/* Responsive adjustments */
+/* ================================== */
+/* Responsive Adjustments */
+/* ================================== */
 @media (max-width: 767.98px) {
     .rates-section {
-        padding: 30px 0;
+        padding: 40px 0; /* Adjust padding */
     }
     .rates-section .page-title {
         font-size: 2rem;
@@ -134,6 +195,8 @@
     }
     .rates-category {
         padding: 20px;
+        /* margin-left: 10px; */ /* Removed */
+        /* margin-right: 10px; */ /* Removed */
     }
     .rates-table th,
     .rates-table td {
@@ -141,13 +204,19 @@
         font-size: 0.9rem;
     }
      .rates-table {
-        min-width: 500px; /* Adjust as needed */
+        min-width: 500px; /* Adjust min-width */
+    }
+    .rates-contact {
+        /* margin-left: 10px; */ /* Removed */
+        /* margin-right: 10px; */ /* Removed */
+        padding: 20px;
+        font-size: 1rem;
     }
 }
 
 @media (max-width: 479.98px) {
      .rates-section {
-        padding: 20px 0;
+        padding: 30px 0; /* Adjust padding */
     }
      .rates-section .page-title {
         font-size: 1.8rem;
@@ -160,9 +229,22 @@
         padding: 8px 10px;
         font-size: 0.85rem;
     }
-    .rates-intro { font-size: 1rem; padding: 0 10px; }
-    .rates-contact { font-size: 1rem; padding: 20px; margin-left: 10px; margin-right: 10px;}
+    .rates-intro {
+        font-size: var(--base-font-size);
+        padding: 0 10px; /* Adjust padding */
+    }
+    .rates-contact {
+        font-size: var(--base-font-size);
+        padding: 15px;
+        /* margin-left: 5px; */ /* Removed */
+        /* margin-right: 5px; */ /* Removed */
+    }
+    .rates-category {
+        padding: 15px;
+        /* margin-left: 5px; */ /* Removed */
+        /* margin-right: 5px; */ /* Removed */
+    }
     .rates-table {
-        min-width: 400px; /* Adjust as needed */
+        min-width: 400px; /* Adjust min-width */
     }
 }
